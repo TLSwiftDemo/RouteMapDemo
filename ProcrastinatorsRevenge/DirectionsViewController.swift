@@ -111,8 +111,9 @@ class DirectionsViewController: UIViewController {
         var directionsArray = [TupleRouteItem]()
         for i in 0..<routes.count {
             plotPloyline(routes[i])
-            let item = (locationArray[i].textField?.text!,
-                        locationArray[i+1].textField?.text!, routes[i]) as! TupleRouteItem
+            let item = ((locationArray[i].textField?.text)!,
+                        (locationArray[i+1].textField?.text)!, routes[i]) as TupleRouteItem
+            //(startingAddress: String, endingAddress: String, route: MKRoute)
             
             
             directionsArray.append(item)

@@ -109,7 +109,9 @@ class ViewController: UIViewController {
     }
 
   @IBAction func swapFields(_ sender: AnyObject) {
-    
+    swap(&destinationField1.text, &destinationField2.text)
+    swap(&locationTuples[1].mapItem, &locationTuples[2].mapItem)
+    swap(&self.enterButtonArray.filter{$0.tag == 2}.first!.isSelected, &self.enterButtonArray.filter{$0.tag == 3}.first!.isSelected)
   }
   
   func showAlert(_ alertString: String) {
@@ -150,9 +152,14 @@ class ViewController: UIViewController {
 extension ViewController: UITextFieldDelegate {
   
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    
+    enterButtonArray.filter{$0.tag == textField.tag}.first!.isSelected = false
+    locationTuples[textField.tag-1].mapItem = nil
+    
+    
     return true
   }
-  
+
   func textFieldDidBeginEditing(_ textField: UITextField) {
     moveViewUp()
   }
